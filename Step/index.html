@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Step</title>
+    </head>    
+    <body>
+        <div style="display: flex;justify-content: space-between;">
+            <button id="btnStep1">step1</button>
+            <button id="btnStep2">step2</button>
+            <button id="btnStep3">step3</button>
+        </div>
+    
+        <div id="detailStep1" style="display: none;">
+            step1
+            <button onclick="goStep(2)">next</button>
+        </div>
+        <div id="detailStep2" style="display: none;">
+            step2
+            <button onclick="goStep(1)">prev</button>
+            <button onclick="goStep(3)">next</button>
+        </div>
+        <div id="detailStep3" style="display: none;">
+            step3
+            <button>end</button>
+        </div>
+    
+        <script>
+            goStep(1)
+    
+    
+            function goStep(num) {
+                if (num == 1) {
+                    document.getElementById('detailStep1').style.display = 'block';
+                    document.getElementById('detailStep2').style.display = 'none';
+                    document.getElementById('detailStep3').style.display = 'none';
+                    document.getElementById('btnStep1').style.backgroundColor = 'darkblue';
+                    document.getElementById('btnStep1').style.color = 'white';
+                    document.getElementById('btnStep2').style.backgroundColor = 'gray';
+                    document.getElementById('btnStep2').style.color = 'white';
+                    document.getElementById('btnStep3').style.backgroundColor = 'gray';
+                    document.getElementById('btnStep3').style.color = 'white';
+                } else if (num == 2) {
+                    document.getElementById('detailStep1').style.display = 'none';
+                    document.getElementById('detailStep2').style.display = 'block';
+                    document.getElementById('detailStep3').style.display = 'none';
+                    document.getElementById('btnStep1').style.backgroundColor = 'green';
+                    document.getElementById('btnStep1').style.color = 'white';
+                    document.getElementById('btnStep2').style.backgroundColor = 'darkblue';
+                    document.getElementById('btnStep2').style.color = 'white';
+                    document.getElementById('btnStep3').style.backgroundColor = 'gray';
+                    document.getElementById('btnStep3').style.color = 'white';
+                } else if (num == 3) {
+                    document.getElementById('detailStep1').style.display = 'none';
+                    document.getElementById('detailStep2').style.display = 'none';
+                    document.getElementById('detailStep3').style.display = 'block';
+                    document.getElementById('btnStep1').style.backgroundColor = 'green';
+                    document.getElementById('btnStep1').style.color = 'white';
+                    document.getElementById('btnStep2').style.backgroundColor = 'green';
+                    document.getElementById('btnStep2').style.color = 'white';
+                    document.getElementById('btnStep3').style.backgroundColor = 'darkblue';
+                    document.getElementById('btnStep3').style.color = 'white';
+                }
+            }
+        </script>
+    </body>
+    
+    </html>

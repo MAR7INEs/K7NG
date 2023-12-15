@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidenav</title>
+</head>
+<body>
+    <style>
+        /* Sidenav styles */
+.sidenav {
+  width: 250px;
+  padding: 16px;
+  background-color: #a2a2a2;
+  color: blue;
+}
+.sidenav a {
+  display: block;
+  margin-bottom:10px;
+}
+    </style>
+    <div id="sidenav" class="sidenav">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+        <a href="#">Link 4</a>
+      </div>
+      
+      <!-- Button to open/close the sidenav -->
+      <button onclick="toggleSidenav()">Toggle Sidenav</button>
+    <script>
+     // Function to toggle the sidenav
+function toggleSidenav() {
+  var sidenav = document.getElementById("sidenav");
+  sidenav.classList.toggle("active");
+}
+    </script>    
+</body>
+</html>

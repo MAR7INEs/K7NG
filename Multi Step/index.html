@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Step</title>
+</head>
+<body>
+    <div id="step1" class="step">
+        <h2>Step 1: Personal Information</h2>
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+        <button onclick="nextStep()">Next</button>
+      </div>
+      
+      <div id="step2" class="step" style="display: none;">
+        <h2>Step 2: Account Setup</h2>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button onclick="prevStep()">Previous</button>
+        <button onclick="nextStep()">Next</button>
+      </div>
+      
+      <div id="step3" class="step" style="display: none;">
+        <h2>Step 3: Confirmation</h2>
+        <p>Confirm your details:</p>
+        <div id="confirmation"></div>
+        <button onclick="prevStep()">Previous</button>
+        <button onclick="submitForm()">Submit</button>
+      </div>
+      <style>
+        .step {
+  margin-bottom: 20px;
+}
+
+.step:not(:first-child) {
+  display: none;
+}
+      </style>
+
+      <script>
+        var currentStep = 1;
+
+function nextStep() {
+  var currentStepDiv = document.getElementById("step" + currentStep);
+  var nextStepDiv = document.getElementById("step" + (currentStep + 1));
+
+  // Validate current step before proceeding
+  if (currentStep === 1) {
+    var nameInput = currentStepDiv.querySelector('input[type="text"]');
+    var emailInput = currentStepDiv.querySelector('input[type="email"]');
+    if (!nameInput.value || !emailInput.value) {
+      alert("Please fill in all fields.");
+      return;
+    }
+  }
+  currentStepDiv.style.display = "none";
+  nextStepDiv.style.display = "block";
+  currentStep++;
+}
+function prevStep() {
+  var currentStepDiv = document.getElementById("step" + currentStep);
+  var prevStepDiv = document.getElementById("step" + (currentStep - 1));
+
+  currentStepDiv.style.display = "none";
+  prevStepDiv.style.display = "block";
+  currentStep--;
+}
+function submitForm() {
+  var confirmationDiv = document.getElementById("confirmation");
+  var nameInput = document.querySelector('#step1 input[type="text"]');
+  var emailInput = document.querySelector('#step1 input[type="email"]');
+  var usernameInput = document.querySelector('#step2 input[type="text"]');
+  var passwordInput = document.querySelector('#step2 input[type="password"]');
+
+  // Display confirmation details
+  confirmationDiv.innerHTML = `
+    <p>Name: ${nameInput.value}</p>
+    <p>Email: ${emailInput.value}</p>
+    <p>Username: ${usernameInput.value}</p>
+    <p>Password: ********</p>
+  `;
+
+  // You can submit the form data to the server or perform any other necessary actions here
+  alert("Form submitted successfully!");
+}
+      </script>
+</body>
+</html>
