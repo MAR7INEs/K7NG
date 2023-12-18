@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cronometer</title> 
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 50px;
+            background-color:lightblue;
+            padding:-50px;                      
+        }
+        button {
+            font-size: 24px;
+            margin: 10px;
+            padding: 10px 20px;
+        }
+
+        
+    </style>
+
+</head>
+<body>
+
+    <h1 id="timer">00:00:00</h1>
+    <button id="startButton" onclick="startTimer()">Start</button>
+    <button id="stopButton" onclick="stopTimer()" disabled>Stop</button>
+    <button id="resetButton" onclick="resetTimer()" disabled>Reset</button>   
+
+    <script>
+        let hours = 0;
+        let minutes = 0;
+        let seconds = 0;
+        let timer;
+        let isRunning = false;
+
+        function startTimer() {
+            if (!isRunning) {
+                timer = setInterval(incrementTimer, 1);
+                <!--این برای تایمرهستش-->
+                isRunning = true;
+                document.getElementById("startButton").disabled = true;
+                document.getElementById("stopButton").disabled = false;
+                document.getElementById("resetButton").disabled = true;
+            }
+        }
+        function incrementTimer() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            displayTimer();
+        }
+        function displayTimer() {
+            const timerElement = document.getElementById("timer");
+            timerElement.textContent = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+        }
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+        function stopTimer() {
+            clearInterval(timer);
+            isRunning = false;
+            document.getElementById("startButton").disabled = false;
+            document.getElementById("stopButton").disabled = true;
+            document.getElementById("resetButton").disabled = false;
+        }
+        function resetTimer() {
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            displayTimer();
+            document.getElementById("startButton").disabled = false;
+            document.getElementById("stopButton").disabled = true;
+            document.getElementById("resetButton").disabled = true;
+        }
+    </script>   
+</body>
+</html>
