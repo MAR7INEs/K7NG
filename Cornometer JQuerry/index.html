@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cornometer.J querry</title>
+  <style>
+    #counter {
+      font-size:50px;
+      text-align:center;
+      margin-top:100px;
+      background-color:lightblue;
+    }    
+    .king{
+        margin-left:750px;
+        margin-top:10px;        
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        //درست اجرا شدنcss 
+      var seconds = 0;
+      var minutes = 0;
+      var hours = 0;
+      var displaySeconds = 0;
+      var displayMinutes = 0;
+      var displayHours = 0;
+      var interval = null;
+      var status = "stopped";
+
+      function stopWatch() {
+        seconds++;
+
+        if (seconds / 60 === 1) {
+          seconds = 0;
+          minutes++;
+
+          if (minutes / 60 === 1) {
+            minutes = 0;
+            hours++;
+          }
+        }
+
+        if (seconds < 10) {
+          displaySeconds = "0" + seconds.toString();
+        } else {
+          displaySeconds = seconds;
+        }
+
+        if (minutes < 10) {
+          displayMinutes = "0" + minutes.toString();
+        } else {
+          displayMinutes = minutes;
+        }
+
+        if (hours < 10) {
+          displayHours = "0" + hours.toString();
+        } else {
+          displayHours = hours;
+        }
+
+        $("#counter").text(
+          displayHours + ":" + displayMinutes + ":" + displaySeconds
+        );
+      }
+
+      $("#start").click(function() {
+        if (status === "stopped") {
+          interval = window.setInterval(stopWatch,1);
+          //این برای تایمر هستش
+          status = "started";
+        }
+      });
+
+      $("#stop").click(function() {
+        window.clearInterval(interval);
+        status = "stopped";
+      });
+
+      $("#reset").click(function() {
+        window.clearInterval(interval);
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        $("#counter").text("00:00:00");
+        status = "stopped";
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="counter">00:00:00</div>
+ <div class="king">
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+  <button id="reset">Reset</button>
+ </div>
+</body>
+</html>
