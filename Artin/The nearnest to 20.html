@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The nearnest to 20</title>
+</head>
+<body>
+    <script>
+        
+        function nearTo20(){
+            let num=arguments[0];
+            for(let i=1;i<arguments.length;i++){
+                if(Math.abs(arguments[i]-20)<Math.abs(num-20)){
+                    num=arguments[i];
+                }
+            }
+            return num;
+        }
+        let myNum=nearTo20(12,15,14,2,-5,20);
+
+        console.log(myNum);
+    </script>
+</body>
+</html>

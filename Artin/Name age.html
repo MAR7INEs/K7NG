@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name age</title>
+    <link rel="stylesheet" href="assets/toast/style.css">
+</head>
+<body>
+    <div>
+        <input type="text" id="fname">
+        <input type="text" id="age">
+        <button id="submit">submit</button>
+        <button id="clearName">Clear Name</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>operation</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="assets/toast/script.js"></script>
+    <script>
+        let data=localStorage.getItem('data')==null ? [] : JSON.parse(localStorage.getItem('data'));        
+        $('#submit').click(function(){
+            let fname = $('#fname').val();
+            let age = Number($('#age').val());
+            if(isNaN(age)){
+                $.toast({
+                    heading: 'Error',
+                    text: 'age is not a number',
+                    showHideTransition: 'fade',
+                    icon: 'error'
+                })
+                return;
+            }
+            if(fname.length<=3){
+                alert('name must have more than 3 character');
+                return;
+            }
+            data.push({
+                fname,
+                age
+            })
+            localStorage.setItem('data',JSON.stringify(data));
+            fillTable();
+            
+        })
+        function fillTable(){
+            $('#tbody').empty();
+            for(let i=0;i<data.length;i++){
+                $('#tbody').append(`<tr><td>${data[i].fname}</td><td>${data[i].age}</td><td><span>x</span></td></tr>`)
+            }
+        }
+        fillTable();
+        
+        $('#clearName').click(function(){
+        $('#fname').val('');
+        });
+    </script>
+</body>
+</html>

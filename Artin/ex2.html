@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var myArray = [
+            {id:1, group: 'A', title: 'Title 1' },
+            {id:2, group: 'A', title: 'Title 2' },
+            {id:3, group: 'C', title: 'Title 3' },
+            {id:4, group: 'A', title: 'Title 4' },
+            {id:5, group: 'A', title: 'Title 5' },
+            {id:6, group: 'B', title: 'Title 6' },
+            {id:7, group: 'C', title: 'Title 7' }
+        ];
+        myArray.sort(function (a, b) {
+            console.log('a',a)
+            console.log('b',b)
+            var res = a.group.localeCompare(b.group);
+            console.log(res)
+            if (res != 0) return res;
+            return a.title.localeCompare(b.title);
+        });
+        console.log(myArray)
+    </script>
+</body>
+
+</html>

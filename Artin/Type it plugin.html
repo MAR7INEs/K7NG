@@ -1,0 +1,169 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>TypeIt Plugin</title>
+  <style>
+    .typewriter {
+      display: inline-block;
+      border-right: 0.08em solid #000;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 1s steps(40, end), blink-caret .75s step-end infinite;
+    }
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: auto;
+      }
+    }
+
+    @keyframes blink-caret {
+      from, to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: #000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="myElement" class="typewriter"></h1>
+
+  <script>
+    class TypeIt {
+      constructor(elementSelector, options) {
+        this.element = document.querySelector(elementSelector);
+        this.text = options.text || '';
+        this.delay = options.delay || 100;
+        this.loop = options.loop || false;
+        this.cursor = options.cursor || false;
+        this.pause = options.pause || 1000;
+        this.currentIndex = 0;
+        this.isDeleting = false;
+        this.start();
+      }
+      start() {
+        this.type();
+      }
+      type() {
+        const currentText = this.text[this.currentIndex];
+
+        if (this.isDeleting) {
+          this.element.textContent = currentText.substring(0, this.element.textContent.length - 1);
+        } else {
+          this.element.textContent = currentText.substring(0, this.element.textContent.length + 1);
+        }
+        let typingSpeed = this.delay;
+        if (this.isDeleting) {
+          typingSpeed /= 2;
+        }
+        if (!this.isDeleting && this.element.textContent === currentText) {
+          typingSpeed = this.pause;
+          this.isDeleting = true;
+        } else if (this.isDeleting && this.element.textContent === '') {
+          this.isDeleting = false;
+          this.currentIndex++;
+
+          if (this.currentIndex === this.text.length && !this.loop) {
+            return;
+          }
+
+          typingSpeed = this.delay;
+        }
+        setTimeout(() => this.type(), typingSpeed);
+      }
+    }
+    //plugin example
+    const options = {
+      text: ['first', 'second', 'third'],
+      delay: 100,
+      loop: true,
+      cursor: true,
+      pause: 1000
+    };
+    new TypeIt('#myElement', options);
+  </script>
+</body>
+</html> -->
+
+
+<!--2-->
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>TypeIt Plugin</title>
+</head>
+<body>
+  <h1 id="myElement"></h1>
+
+  <script>
+    const text = ['first', 'second', 'third'];
+    let index = 0;
+    let isDeleting = false;
+    let delay = 100;
+
+    function type() {
+      const currentText = text[index];
+      const element = document.querySelector('#myElement');
+
+      if (isDeleting) {
+        element.textContent = currentText.substring(0, element.textContent.length - 1);
+      } else {
+        element.textContent = currentText.substring(0, element.textContent.length + 1);
+      }
+
+      if (!isDeleting && element.textContent === currentText) {
+        delay = 1000;
+        isDeleting = true;
+      } else if (isDeleting && element.textContent === '') {
+        isDeleting = false;
+        index++;
+
+        if (index === text.length) {
+          index = 0;
+        }
+
+        delay = 100;
+      }
+
+      setTimeout(type, delay);
+    }
+
+    type();
+  </script>
+</body>
+</html>-->
+
+
+<!-- this one is mine 3 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type it plugin</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+    <input type="text" id="inputText">
+    <button onclick="displayText()">Type</button>
+    <div id="output"></div>
+    <script>
+        function displayText(){
+          var inputElement=
+          document.getElementById("inputText");
+          var outputElement=
+          document.getElementById("output");
+          var text=inputElement.value;
+          outputElement.innerHTML=text; 
+          }
+    </script>
+</body>
+</html>

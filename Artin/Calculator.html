@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="num1">
+        <br>
+        <input type="text" id="num2">
+        <br>
+        <button onclick="calc()">click me</button>
+    </div>
+    <div id="display">
+    </div>
+    <script>
+        function calc(){
+            let num1=Number(document.getElementById('num1').value);
+            let num2=Number(document.getElementById('num2').value);
+            let sum=num1+num2;
+            let div=num1/num2;
+            let mul = num1*num2;
+            let minus=num1-num2;
+            document.getElementById('display').innerHTML=`
+                <p> ${num1} + ${num2} = ${sum}</p>
+                <p> ${num1} - ${num2} = ${minus}</p>
+                <p> ${num1} * ${num2} = ${mul}</p>
+                <p> ${num1} / ${num2} = ${div}</p>
+            `
+        }
+    </script>    
+</body>
+</html>

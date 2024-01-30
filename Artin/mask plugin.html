@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mask Plugin</title>
+</head>
+<body>
+  <input type="text" id="myInput" placeholder="مثال: 12345-678" />
+
+  <script>
+    function maskInput(input, mask) {
+      input.addEventListener('input', function(e) {
+        let value = e.target.value;
+        let maskedValue = '';
+        let j = 0;
+
+        for (let i = 0; i < mask.length; i++) {
+          if (mask[i] === '-') {
+            maskedValue += '-';
+          } else {
+            if (value[j] !== undefined) {
+              maskedValue += value[j];
+              j++;
+            }
+          }
+        }
+        e.target.value = maskedValue;
+      });
+    }
+
+    const input = document.querySelector('#myInput');
+    const mask = '#####-###'; // الگوی ماسک
+
+    maskInput(input, mask);
+  </script>
+</body>
+</html>
+
+<!-- بلد نبودم کپی کردم کامل -->

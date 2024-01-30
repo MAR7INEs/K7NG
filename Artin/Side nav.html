@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side nav</title>
+
+    <style>
+        .sidenav{
+            position:fixed;
+            right: 0;
+            top: 0;
+            width:300px;
+            height:100%;
+            background-color: rgb(0, 81, 255);
+            transform: translateX(300px);
+            transition: 1s;
+        }
+        .sidenav.active {
+            transform: translate(0);
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showSidenav()">pls click me to open</button>
+    <div class="sidenav" id="sidenav">
+        <button onclick="hideSidenav()">pls click me to close</button>
+        <p>Hi im Artin</p>
+    </div>
+    <script>
+        function showSidenav(){
+            document.getElementById('sidenav').classList.add('active');
+            //add the blue page
+        }
+        function hideSidenav(){
+            document.getElementById('sidenav').classList.remove('active');
+            //close the blue page
+        }
+    </script>
+</body>
+</html>
