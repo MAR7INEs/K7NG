@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP</title>
+</head>
+<body>
+    <style>
+        #cart{
+            background-color: rgb(143, 143, 143);
+        }
+    </style>
+    <div id="cart">
+        <h2>سبد خرید</h2>
+        <ul id="cart-items"></ul>
+        <p id="cart-total">مجموع: $0</p>
+        <button id="checkout-btn">تسویه حساب</button>
+      </div>
+      <script>
+        var cartItems = [];
+        var cartTotal = 0;
+        function addToCart(item) {
+        cartItems.push(item);
+        cartTotal += item.price;
+        updateCart();
+        }
+        function removeFromCart(item) {
+        var index = cartItems.indexOf(item);
+        if (index > -1) {
+            cartItems.splice(index, 1);
+            cartTotal -= item.price;
+            updateCart();
+        }
+        }
+        function updateCart() {
+        var cartItemsElement = document.getElementById('cart-items');
+        var cartTotalElement = document.getElementById('cart-total');
+        // پاک کردن آیتم‌های قبلی
+        cartItemsElement.innerHTML = '';
+        // اضافه کردن آیتم‌ها به سبد خرید
+        cartItems.forEach(function(item) {
+            var li = document.createElement('li');
+            li.textContent = item.name + ' - $' + item.price;
+            cartItemsElement.appendChild(li);
+        });
+        // به‌روز رسانی مجموع سبد خرید
+        cartTotalElement.textContent = 'مجموع: $' + cartTotal;
+        }
+        // تعریف آیتم‌ها
+        var item1 = { name: 'محصول ۱', price: 100 };
+        var item2 = { name: 'محصول ۲', price: 50 };
+        var item3 = { name: 'محصول ۳', price: 25 };
+
+        // اضافه کردن آیتم‌ها به سبد خرید
+        addToCart(item1);
+        addToCart(item2);
+        addToCart(item3);
+        // removeFromCart(item1);
+        // removeFromCart(item2);
+        // removeFromCart(item3);
+      </script>
+</body>
+</html>

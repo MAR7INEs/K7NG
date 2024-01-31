@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP2</title>
+</head>
+<body>       
+    <div id="product-list">
+      <h2>list</h2>
+      <ul>
+        <li data-id="1" data-name="1" data-price="10">1- $10</li>
+        <li data-id="2" data-name="2" data-price="20">2- $20</li>
+        <li data-id="3" data-name="3" data-price="30">3- $30</li>
+      </ul>
+    </div>
+    <div id="cart">
+        <h2>Shopping list</h2>
+        <ul id="cart-items"></ul>
+        <p id="cart-total">مجموع: $0</p>
+    </div>      
+    <script>
+      // متغیرها
+var cartItems = [];
+var cartTotal = 0;
+
+// تابع برای اضافه کردن کالا به سبد خرید
+function addToCart(item) {
+  cartItems.push(item);
+  cartTotal += item.price;
+  updateCartView();
+}
+
+// تابع برای حذف کالا از سبد خرید
+function removeFromCart(item) {
+  var index = cartItems.indexOf(item);
+  if (index > -1) {
+    cartItems.splice(index, 1);
+    cartTotal -= item.price;
+    updateCartView();
+  }
+}
+
+// تابع برای به‌روزرسانی نمایش سبد خرید
+function updateCartView() {
+  var cartItemsElement = document.getElementById('cart-items');
+  var cartTotalElement = document.getElementById('cart-total');
+
+  // پاک کردن محتویات قبلی
+  cartItemsElement.innerHTML = '';
+
+  // اضافه کردن موارد جدید به سبد خرید
+  cartItems.forEach(function(item) {
+    var li = document.createElement('li');
+    li.textContent = item.name + ' - $' + item.price;
+    cartItemsElement.appendChild(li);
+  });
+
+  // به‌روزرسانی مجموع
+  cartTotalElement.textContent = 'مجموع: $' + cartTotal;
+}
+
+// اضافه کردن رویدادها به دکمه‌ها
+window.onload = function() {
+  var productItems = document.querySelectorAll('#product-list ul li');
+  productItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      var itemId = item.getAttribute('data-id');
+      var itemName = item.getAttribute('data-name');
+      var itemPrice = parseInt(item.getAttribute('data-price'));
+      var selectedItem = { id: itemId, name: itemName, price: itemPrice };
+      addToCart(selectedItem);
+    });
+  });
+
+  var cartItems = document.querySelectorAll('#cart-items li');
+  cartItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      var itemId = item.getAttribute('data-id');
+      var selectedItem = cartItems.find(function(item) {
+        return item.id === itemId;
+      });
+      removeFromCart(selectedItem);
+    });
+  });
+};
+    </script>
+</body>
+</html>
