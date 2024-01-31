@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="slider"></div>
+    <style>   
+    #slider {
+        width: 300px;
+        height: 30px;
+        background-color: #7e7e7e;
+        position: relative;
+        margin-top:120px;
+        margin-left:100px;
+      }      
+      #slider .thumb {
+        width: 40px;
+        height: 40px;
+        background-color: #f00;
+        position: absolute;
+        top: -5px;
+        cursor: pointer;
+      }      
+      </style>
+      <script>
+        var slider = document.getElementById('slider');
+      var thumb = document.createElement('div');
+      thumb.className = 'thumb';
+      slider.appendChild(thumb);
+
+      var isDragging = false;
+
+      thumb.addEventListener('mousedown', function(event) {
+        isDragging = true;
+      });
+
+      document.addEventListener('mousemove', function(event) {
+        if (isDragging) {
+          var sliderRect = slider.getBoundingClientRect();
+          var thumbRect = thumb.getBoundingClientRect();
+          var thumbPosition = event.clientX - sliderRect.left - (thumbRect.width / 2);
+          
+          if (thumbPosition < 0) {
+            thumbPosition = 0;
+          }
+          else if (thumbPosition > sliderRect.width - thumbRect.width) {
+            thumbPosition = sliderRect.width - thumbRect.width;
+          }
+          
+          thumb.style.left = thumbPosition + 'px';
+        }
+      });
+
+      document.addEventListener('mouseup', function(event) {
+        isDragging = false;
+      });
+      </script>
+</body>
+</html>
