@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <h1>Calculator</h1>
+</head>
+<body>
+    <style>
+        h1{
+            background-color: rgb(102, 255, 255);
+        }
+        button{
+            background-color: aquamarine;
+        }
+    </style>
+    <div>
+        <input type="text" id="num1" placeholder="First number">
+        <br>
+        <input type="text" id="num2" placeholder="second number">
+        <br>
+        <input type="text" id="num3" placeholder="third number">
+        <br>
+        <input type="text" id="num4" placeholder="fourth number">
+        <br>
+        <button onclick="calc()">click me pls</button>
+    </div>
+    <div id="display">
+    </div>
+    <script>
+        function calc(){
+            let num1=Number(document.getElementById('num1').value);
+            let num2=Number(document.getElementById('num2').value);
+            let num3=Number(document.getElementById('num3').value);
+            let num4=Number(document.getElementById('num4').value);
+            let sum=num1+num2+num3+num4;
+            let minus=num1-num2-num3-num4;
+            let mul = num1*num2*num3*num4;
+            let div=num1/num2/num3/num4;
+            document.getElementById('display').innerHTML=`
+                <p> ${num1} + ${num2} + ${num3} + ${num4} = ${sum}</p>
+                <p> ${num1} - ${num2} - ${num3} - ${num4} = ${minus}</p>
+                <p> ${num1} * ${num2} * ${num3} * ${num4} = ${mul}</p>
+                <p> ${num1} / ${num2} / ${num3} / ${num4} = ${div}</p>`
+        }
+    </script>    
+</body>
+</html>

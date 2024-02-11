@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel Reservation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hotel Information</h1>
+  <div id="hotelInfo"></div>
+  <button onclick="addToCart()">Add to Cart</button>
+  <div id="cartInfo"></div>
+
+  <script>
+    // ایجاد شیء hotel و ذخیره اطلاعات
+    var hotel = {
+      name: "Hotel California",
+      location: "California",
+      rooms: 100,
+      vacancies: 30
+    };
+
+    // ایجاد سبد رزرو
+    var reservationCart = [];
+
+    // نمایش اطلاعات هتل در صفحه
+    var hotelInfoElement = document.getElementById("hotelInfo");
+    hotelInfoElement.innerHTML = "<h2>" + hotel.name + "</h2>" +
+                                 "<p>Location: " + hotel.location + "</p>" +
+                                 "<p>Rooms: " + hotel.rooms + "</p>" +
+                                 "<p>Vacancies: " + hotel.vacancies + "</p>";
+
+    // اضافه کردن اطلاعات هتل به سبد رزرو
+    function addToCart() {
+      reservationCart.push(hotel);
+      var cartInfoElement = document.getElementById("cartInfo");
+      cartInfoElement.innerHTML = "<h2>Reservation Cart</h2>" +
+                                  "<p>Number of items: " + reservationCart.length + "</p>";
+    }
+  </script>
+</body>
+</html>

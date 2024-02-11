@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hotel Information</h1>
+  <div id="hotelInfo"></div>
+
+  <script>
+    // ایجاد شیء hotel و ذخیره اطلاعات
+    var hotel = {
+      name: "Hotel Califonia",
+      location: "California",
+      rooms: 100,
+      vacancies: 30
+    };
+
+    // نمایش اطلاعات هتل در صفحه
+    var hotelInfoElement = document.getElementById("hotelInfo");
+    hotelInfoElement.innerHTML = "<h2>" + hotel.name + "</h2>" +
+                                 "<p>Location: " + hotel.location + "</p>" +
+                                 "<p>Rooms: " + hotel.rooms + "</p>" +
+                                 "<p>Vacancies: " + hotel.vacancies + "</p>";
+  </script>
+</body>
+</html>

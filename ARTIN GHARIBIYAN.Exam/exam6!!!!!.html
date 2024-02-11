@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name">
+    <input type="email" id="email">
+    <button id="saveButton">save</button> 
+    <script>
+        $(document).ready(function() {
+  // بررسی وجود اطلاعات کاربر در حافظه محلی
+  if(localStorage.getItem("name") !== null && localStorage.getItem("email") !== null) {
+    // نمایش اطلاعات کاربر در صفحه
+    $("#name").val(localStorage.getItem("name"));
+    $("#email").val(localStorage.getItem("email"));
+  }
+  
+  // رویداد کلیک بر روی دکمه ذخیره
+  $("#saveButton").click(function() {
+    // دریافت اطلاعات از فیلدهای ورودی
+    var name = $("#name").val();
+    var email = $("#email").val();
+    
+    // ذخیره اطلاعات در حافظه محلی
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    
+    alert("اطلاعات با موفقیت ذخیره شد!");
+  });
+});
+    </script>
+</body>
+
+<!-- استاد اینو بلد نبودم با json با یک روش دیگر زدم -->

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+</head>
+<body>
+    <script>
+        //اینجا از prompt استفاده میکنیم 
+        let weight = parseFloat(prompt("pls enter your weight kg:"));
+        let height = parseFloat(prompt("pls enter your height m:"));
+        // محاسبه شاخص توده بدنی
+        let bmi = weight / (height * height);
+        //ینجا از alert استفاده میکنیم 
+        alert("your body mass index(BMI)" + bmi.toFixed(2));
+
+
+        // function calculateBMI() {
+        // let weight = parseFloat(prompt("pls enter your weight kg:"));
+        // let height = parseFloat(prompt("pls enter your height m:"));
+        // let bmi = weight / (height * height);
+        // return bmi.toFixed(2);
+        // }
+        // function displayBMI() {
+        // let bmi = calculateBMI();
+        // alert("your body mass index(BMI): " + bmi);
+        // }
+        // displayBMI();
+    </script>
+</body>
+</html>

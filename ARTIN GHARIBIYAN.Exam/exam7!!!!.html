@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete User Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 50px;
+    }
+    form {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      padding: 5px;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Delete User Data</h1>
+  <form id="saveForm">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId" placeholder="Enter user ID" required>
+    <button type="submit">Save User Data</button>
+  </form>
+
+  <button id="deleteButton" disabled>Delete User Data</button>
+
+  <script>
+    const axios = require('axios');
+    const getUrl = 'https://example.com/api/users/';
+    const deleteUrl = 'https://example.com/api/users/';
+    let userData = null;
+
+    document.getElementById('saveForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const userId = document.getElementById('userId').value;
+
+      axios({
+        method: 'get',
+        url: getUrl + userId
+      })
+        .then(response => {
+          userData = response.data;
+          document.getElementById('deleteButton').disabled = false;
+          console.log('اطلاعات کاربر با موفقیت ذخیره شد.');
+        })
+        .catch(error => {
+          console.error('خطا در دریافت اطلاعات کاربر:', error);
+        });
+    });
+
+    document.getElementById('deleteButton').addEventListener('click', function() {
+      if (userData === null) {
+        console.error('هیچ اطلاعاتی برای پاک کردن وجود ندارد.');
+        return;
+      }
+
+      const userId = document.getElementById('userId').value;
+
+      axios({
+        method: 'delete',
+        url: deleteUrl + userId,
+        data: {}
+      })
+        .then(response => {
+          userData = null;
+          document.getElementById('deleteButton').disabled = true;
+          console.log('اطلاعات کاربر با موفقیت پاک شد.');
+        })
+        .catch(error => {
+          console.error('خطا در پاک کردن اطلاعات کاربر:', error);
+        });
+    });
+  </script>
+</body>
+</html>
+<!-- با کمک chat GPT درستش کردم -->

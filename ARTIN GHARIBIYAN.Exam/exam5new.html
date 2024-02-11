@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+    <style>
+        .faq {
+        margin-bottom: 10px;
+        }
+        .faq h2 {
+        cursor: pointer;        
+        }
+        .faq .answer {
+        display: none;        
+        }
+    </style>
+    <div class="faq">
+        <h2>Question 1</h2>
+        <div class="answer">
+        <p id="answer1"></p>
+        <textarea id="userAnswer1"></textarea>
+        <button onclick="submitAnswer('userAnswer1', 'answer1')">Submit</button>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2>Question 2</h2>
+        <div class="answer">
+        <p id="answer2"></p>
+        <textarea id="userAnswer2"></textarea>
+        <button onclick="submitAnswer('userAnswer2', 'answer2')">Submit</button>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2>Question 3</h2>
+        <div class="answer">
+        <p id="answer3"></p>
+        <textarea id="userAnswer3"></textarea>
+        <button onclick="submitAnswer('userAnswer3', 'answer3')">Submit</button>
+        </div>
+    </div>
+
+    <button onclick="submitAllAnswers()">Submit All</button>
+
+    <script>
+        function submitAnswer(userAnswerId, answerId) {
+            var userAnswer = document.getElementById(userAnswerId).value;
+            document.getElementById(answerId).innerText = userAnswer;
+        }
+
+        function submitAllAnswers() {
+            var userAnswer1 = document.getElementById('userAnswer1').value;
+            var userAnswer2 = document.getElementById('userAnswer2').value;
+            var userAnswer3 = document.getElementById('userAnswer3').value;
+
+            document.getElementById('answer1').innerText = userAnswer1;
+            document.getElementById('answer2').innerText = userAnswer2;
+            document.getElementById('answer3').innerText = userAnswer3;
+        }
+    </script>
+
+</body>
+</html>

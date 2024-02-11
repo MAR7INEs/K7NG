@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <style>
+        .faq {
+        margin-bottom: 10px;
+        }
+        .faq h2 {
+        cursor: pointer;        
+        }
+        .faq .answer {
+        display: none;        
+        }
+    </style>
+    <div class="faq">
+        <h2>Question 1</h2>
+        <div class="answer">
+        <p>answer1 </p>
+        <textarea id="userAnswer1"></textarea>
+        <button onclick="submitAnswer('userAnswer1', 'answer1')">Submit</button>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2>Question 2</h2>
+        <div class="answer">
+        <p>answer 2</p>
+        <textarea id="userAnswer2"></textarea>
+        <button onclick="submitAnswer('userAnswer2', 'answer2')">Submit</button>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2>Question 3</h2>
+        <div class="answer">
+        <p>answer 3</p>
+        <textarea id="userAnswer2"></textarea>
+        <button onclick="submitAnswer('userAnswer3', 'answer3')">Submit</button>
+        </div>
+    </div>
+    <button type="button" onclick="submitAllAnswers()">Submit All</button>
+    <script>
+        $(document).ready(function() {
+          $('.faq h2').click(function() {
+            var answer = $(this).next('.answer');
+            $('.faq .answer').not(answer).slideUp();
+            answer.slideToggle();
+          });
+        });
+        //با کمک chat GPT درستش کردم
+      </script>
+</body>
+</html>
